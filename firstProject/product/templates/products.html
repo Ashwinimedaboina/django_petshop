@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: #cdfcff;
+            
+        }
+        h1{
+            text-align: center;
+            color: #5514e2;
+            text-decoration: underline;
+        }
+        #class{
+            color:red;
+            font-size: 30px;
+            font-style: italic;
+            
+        }
+        .demo{
+            color: rgb(43, 226, 92);
+            font-size: 25px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <h1>{{request.session.currentUser}}</h1>
+    {%for product in object_list%}
+     <div>
+        <ul >
+
+      
+        <li id ="class" ><a href="{%url 'productdetail' product.id     %}"> Name::  {{product.product_name}}</a></li>
+        <li class="demo">  Description:: {{product.product_description}}</li><hr>
+
+    <div>   <img src="{{product.product_picture.url}}" alt="" srcset="">
+        
+    </div>
+        
+     </ul>
+
+
+    {%    endfor         %}
+ </div>
+</body>
+</html>

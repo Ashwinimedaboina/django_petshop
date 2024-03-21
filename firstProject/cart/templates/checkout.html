@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+ {% load CustomFilter%}
+
+{% block content %}
+
+<h3>checkout</h3>
+
+<!--<div>{{form.as_p}}</div>-->
+<div>
+    <table border="1" cellpadding="50">
+        <tr>
+          <th>productId</th>
+          <th>product_name</th>
+          <th>Quantity</th>
+          <th>price</th>
+          <th>Amount</th>
+        </tr>
+        
+        {% for i in items %}
+          <tr>
+            <th>{{i.id}}</th>
+            <th>{{i.products.product_name}}</th>
+            <th>{{i.quantity}}</th>
+            <th>{{i.products.product_price}}</th>
+            <th>{{i.products.product_price|multiply:i.quantity}}</th>
+              
+            
+        
+          </tr>
+        
+        {% endfor %}
+<tr><td><h1>FinalAmount::{{finalAmount}}</h1></td></tr>
+        
+        </table>
+</div><br>
+</br>
+<form method="post" action="{% url 'checkout'%}">
+  {% csrf_token %}
+<table>
+{% for i in form%}
+<tr>
+  <td>{{i.label}}</td>
+  <td>{{i}}</td>
+</tr>
+{% endfor%}
+<tr>
+    <td>
+        <button type="submit">Make Payment</button>
+    </td>
+</tr>
+</table>
+</form>
+{% endblock %}
